@@ -1,15 +1,13 @@
 import { Address } from "../address/address";
 import { Company } from "../company/company";
 
-export class User {
-  constructor(
-    public id: number,
-    public name: string,
-    public username: string,
-    public email: string,
-    public address: Address,
-    public phone: string,
-    public website: string,
-    public company: Company,
-  ) { }
+export interface User {
+  id?: number | null,
+  name?: string | null,
+  username?: string | null,
+  email?: string | null,
+  address?: Address | null,
+  phone?: string | null,
+  website?: string | null,
+  company?: Company | null,
 }

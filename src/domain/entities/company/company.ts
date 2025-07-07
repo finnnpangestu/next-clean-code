@@ -1,7 +1,5 @@
-export class Company {
-  constructor(
-    public name: string,
-    public catchPhrase: string,
-    public bs: string,
-  ) { }
+export interface Company {
+  name?: string | null,
+  catchPhrase?: string | null,
+  bs?: string | null,
 }
