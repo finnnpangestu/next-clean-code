@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { I18nProvider } from "@/shared/components/i18n_provider";
+import { I18nProvider } from "@/shared";
 
 export const metadata: Metadata = {
   title: "Create Next App",

@@ -1,4 +1,4 @@
-import { Logger } from "@/infrastructure/logging/logger";
+import { Logger } from "@/infrastructure";
 import axios from "axios";
 
 export const api = axios.create({
