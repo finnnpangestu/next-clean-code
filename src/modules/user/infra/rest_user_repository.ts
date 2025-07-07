@@ -1,6 +1,6 @@
 import { User } from "@/domain/entities/user/user";
 import { err, ok, Result } from "neverthrow";
-import { IUserRepository } from "../repositories/user_repository";
+import { IUserRepository } from "../../../domain/repositories/user_repository";
 import { api } from "@/shared/config/axios";
 import { ApiNetwork } from "@/shared/constants/api_network";
 
