@@ -1,6 +1,5 @@
+import { IUserRepository, User } from "@/domain";
 import { Result } from "neverthrow";
-import { IUserRepository } from "../../../domain/repositories/user_repository";
-import { User } from "@/domain/entities/user/user";
 
 export class GetUsers {
   constructor(private repository: IUserRepository) { }

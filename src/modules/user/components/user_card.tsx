@@ -1,4 +1,4 @@
-import { User } from "@/domain/entities/user/user";
+import { User } from "@/domain";
 
 type Props = { user: User };
 
