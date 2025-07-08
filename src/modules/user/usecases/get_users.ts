@@ -1,4 +1,5 @@
-import { IUserRepository, User } from "@/domain";
+import { User } from "@/domain/entities/user/user";
+import { IUserRepository } from "@/domain/repositories/user_repository";
 import { Result } from "neverthrow";
 
 export class GetUsers {

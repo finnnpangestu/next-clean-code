@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { RestUserRepository } from "../infra/rest_user_repository";
 import { GetUsers } from "../usecases/get_users";
-import { User } from "@/domain";
+import { User } from "@/domain/entities/user/user";
 
 export const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);

@@ -1,6 +1,8 @@
 "use client";
 
-import { UserCard, useUsers } from "@/modules/user";
+import { UserCard } from "@/modules/user/components/user_card";
+import { useUsers } from "@/modules/user/hooks/useUsers";
+
 
 export default function Home() {
   const { users, loading, error } = useUsers();

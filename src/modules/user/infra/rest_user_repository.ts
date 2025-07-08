@@ -1,6 +1,8 @@
+import { User } from "@/domain/entities/user/user";
+import { IUserRepository } from "@/domain/repositories/user_repository";
+import { api } from "@/shared/config/axios";
+import { ApiNetwork } from "@/shared/constants/api_network";
 import { err, ok, Result } from "neverthrow";
-import { IUserRepository, User } from "@/domain";
-import { api, ApiNetwork } from "@/shared";
 
 export class RestUserRepository implements IUserRepository {
   async getUsers(): Promise<Result<User[], Error>> {
