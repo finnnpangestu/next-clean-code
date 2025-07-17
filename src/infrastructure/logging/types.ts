@@ -1,5 +1,5 @@
 export interface ILogger {
-  info(message: string, ...meta: any[]): void;
-  warn(message: string, ...meta: any[]): void;
-  error(message: string, ...meta: any[]): void;
+  info(message: string, ...meta: []): void;
+  warn(message: string, ...meta: []): void;
+  error(message: string, ...meta: []): void;
 }
