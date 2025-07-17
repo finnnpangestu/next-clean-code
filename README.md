@@ -1,36 +1,174 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🚀 Next.js App with Clean Architecture
 
-First, run the development server:
+This project is a [Next.js](https://nextjs.org/) application built using a **Clean Architecture** approach to ensure scalability, modularity, and maintainability.
+
+---
+
+## 🧱 Project Structure
+
+```
+src/
+├── app/                # Next.js App Router structure (layouts, pages, globals)
+├── domain/             # Domain Layer: business entities & interfaces
+│   ├── entities/
+│   └── repositories/
+├── infrastructure/     # Infrastructure Layer: API, logging, auth, storage
+│   ├── auth/
+│   ├── http/
+│   ├── logging/
+│   └── storage/
+├── modules/            # Feature-based modules
+│   └── user/
+│       ├── components/
+│       ├── hooks/
+│       ├── infra/
+│       ├── services/
+│       ├── usecases/
+│       └── types.ts
+├── shared/             # Shared utilities, constants, and configs
+│   ├── components/
+│   ├── config/
+│   ├── constants/
+│   ├── hooks/
+│   ├── lib/
+│   ├── locales/
+│   ├── styles/
+│   └── types/
+```
+
+---
+
+## 📦 Dependencies
+
+### Core Dependencies
+
+- **[`axios`](https://axios-http.com/)** — Promise-based HTTP client for API communication.
+- **[`i18next`](https://www.i18next.com/)** — Internationalization framework for handling multi-language support.
+- **[`neverthrow`](https://github.com/supermacro/neverthrow)** — Utility for functional error handling with `Result<T, E>` pattern.
+- **[`next`](https://nextjs.org/)** — React framework for building fullstack web applications.
+- **[`react`](https://reactjs.org/)** — Library for building user interfaces.
+- **[`react-dom`](https://reactjs.org/docs/react-dom.html)** — Provides DOM-specific methods for React.
+- **[`react-i18next`](https://react.i18next.com/)** — React bindings for `i18next`.
+
+### Development Dependencies
+
+- **[`@eslint/eslintrc`](https://www.npmjs.com/package/@eslint/eslintrc)** — ESLint configuration helper package.
+- **[`@tailwindcss/postcss`](https://tailwindcss.com/docs/installation)** — Tailwind's PostCSS integration for styling.
+- **[`@types/node`](https://www.npmjs.com/package/@types/node)** — TypeScript definitions for Node.js.
+- **[`@types/react`](https://www.npmjs.com/package/@types/react)** — TypeScript definitions for React.
+- **[`@types/react-dom`](https://www.npmjs.com/package/@types/react-dom)** — TypeScript definitions for ReactDOM.
+- **[`eslint`](https://eslint.org/)** — Linter for JavaScript/TypeScript to ensure code quality.
+- **[`eslint-config-next`](https://nextjs.org/docs/basic-features/eslint)** — ESLint config prebuilt for Next.js projects.
+- **[`tailwindcss`](https://tailwindcss.com/)** — Utility-first CSS framework for rapid UI development.
+- **[`typescript`](https://www.typescriptlang.org/)** — Superset of JavaScript that adds static types.
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+# or
+yarn
+```
+
+### 2. Run the development server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Architecture Overview
 
-## Learn More
+This project uses **Clean Architecture**, which consists of:
 
-To learn more about Next.js, take a look at the following resources:
+- **Domain Layer** (`domain/`)  
+  Contains core business logic: entities and repository contracts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Use Case Layer** (`modules/*/usecases/`)  
+  Application-specific business rules orchestrated here.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Infrastructure Layer** (`infrastructure/`, `modules/*/infra/`)  
+  Implements external details like API calls, local storage, etc.
 
-## Deploy on Vercel
+- **Presentation Layer** (`app/`, `modules/*/components`, `modules/*/hooks`)  
+  React components, hooks, and pages for UI.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Internationalization (i18n)
+
+This project uses `i18next` and `react-i18next` for multi-language support.
+
+Translation files are stored in:
+
+```
+shared/locales/
+├── en.json
+└── id.json
+```
+
+---
+
+## 🔒 Error Handling with neverthrow
+
+We use [`neverthrow`](https://github.com/supermacro/neverthrow) to handle errors without using `try/catch`.
+
+```ts
+import { Result, ok, err } from 'neverthrow';
+
+function getUserName(): Result<string, Error> {
+  const isValid = true;
+  if (isValid) return ok("John Doe");
+  return err(new Error("User not found"));
+}
+```
+
+Neverthrow is especially useful in `usecases` and `repositories` for predictable and safe error flows.
+
+---
+
+## 🧪 ESLint & Formatting
+
+Lint your code with:
+
+```bash
+npm run lint
+```
+
+Code style is based on `eslint-config-next` and supports Tailwind CSS.
+
+---
+
+## 🎨 Styling with Tailwind CSS
+
+Tailwind is configured with PostCSS and lives in:
+
+- `shared/styles/`
+- `globals.css` in `app/`
+
+You can use utility-first classes directly in your components.
+
+---
+
+## 📤 Deployment
+
+You can deploy this app easily using [Vercel](https://vercel.com), the creators of Next.js.
+
+Read the full guide here:  
+👉 [Next.js Deployment Documentation](https://nextjs.org/docs/app/building-your-application/deploying)
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
